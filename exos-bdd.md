@@ -8,3 +8,7 @@ use $database_name ;
 #Montrer les tables à l'intérieur d'une BDD
 
 show tables from $database_name ;
+
+#Décrire une table
+
+describe $table_name ;
