@@ -73,10 +73,22 @@ describe Vin ;
 select NumVin, Cru from Vin
 where Cru like 'A%' ;
 ```
-10.Liste des viticulteurs (n° et nom) dont le nom contient 'LIN'<br />
+10. Liste des viticulteurs (n° et nom) dont le nom contient 'LIN'<br />
 ```
 show tables from tpvins ;
 describe Viticulteur ;
 select NumVitic, NomV from Vin
 where NomV like '%LIN%' ;
 ```
+11. Liste des buveurs (n° et nom) qui n'habitent ni Paris ni Macon (2 solutions dont 1 avec not in)<br />
+```
+describe Buveur ;
+select NumBuveur and NomB from Buveur
+where VilleB <> 'PARIS' and VilleB <> 'MACON' ;
+```
+```
+select NumBuveur and NomB from Buveur
+where VileB not in('PARIS', 'MACON') ;
+```
+##Requêtes avec jointures
+12.
