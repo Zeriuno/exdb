@@ -12,11 +12,15 @@
 4. Décrire une table<br />
 `describe $table_name ;`
 
+```
+select Nom as 'Allons voir'
 plusieurs attributs: X, Y
 chaîne de caractères: 'Chaîne'
 contient X: like %X%
+select X from Y where attribute between 'A%' and 'G%'
 différent: <>
-not in ()
+not in (x,y)
+```
 
 --
 #tpvins
@@ -91,4 +95,16 @@ select NumBuveur and NomB from Buveur
 where VileB not in('PARIS', 'MACON') ;
 ```
 ##Requêtes avec jointures
-12.
+12. Liste des buveurs (n°, nom et ville) qui ont passé au moins une commande (avec distinct et sans).<br />
+```
+show tables from tpvins ;
+describe Commande ;
+select Commande.NumBuveur, NomB, VilleB from Buveur, Commande
+where Commande.NumBuveur = Buveur.NumBuveur ;
+select distinct Commande.NumBuveur, NomB, VilleB from Buveur, Commande
+where Commande.NumBuveur = Buveur.NumBuveur ;
+```
+avec alias
+```
+select c.NumBuveur, NomB, VilleB from Commande c, Buveur b, where c.NumBuveur = b.NumBuveur ;
+```
