@@ -12,6 +12,12 @@
 4. Décrire une table<br />
 `describe $table_name ;`
 
+plusieurs attributs: X, Y
+chaîne de caractères: 'Chaîne'
+contient X: like %X%
+différent: <>
+not in ()
+
 --
 #tpvins
 
