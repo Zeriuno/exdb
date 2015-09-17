@@ -108,3 +108,47 @@ avec alias
 ```
 select c.NumBuveur, NomB, VilleB from Commande c, Buveur b, where c.NumBuveur = b.NumBuveur ;
 ```
+13. Liste des viticculteurs (n°, nom et ville) qui proposent du vin de Loire de millésime 1983.<br />
+```
+describe Vin ;
+describe Viticulteur ;
+select v.NumVitic, NomV, VilleV from Viticulteur v, Vin n
+where v.NumVitic = n.NumVitic and Region = "LOIRE" and Millesime = "1983" ;
+```
+14. Liste des buveurs (n° et nom) qui ont commandé du vin de cru "Pommard".<br />
+```
+describe Commande ;
+describe Vin ;
+describe Buveur ;
+select b.NumBuveur, NomB from Buveur b, Commande c, Vin n
+where b.NumBuveur = c.NumBuveur
+and c.NumVin = n.NumVin
+and Cru = "POMMARD"
+```
+15. Noms des viticulteurs à qui le buveur 1600 a comandé du vin (2 solutions, avec ou sans sous-requêtes).
+```
+select v.NomV from Viticulteur v, Vin n, Commande c, Buveur b
+where b.NumBuveur = c.NumBuveur
+and c.NumVin = n.NumVin
+and n.NumVitic = v.NumVitic
+and c.NumBuveur = 1600 ;
+```
+16. Noms des viticulteurs à qui le buveur Dupond a commandé du vin.<br />
+```
+describe Viticulteur ;
+select NomV from Viticulteur v, Buveur b, Commande c, Vin n
+where n.NumVitic = v.NumVitic
+and b.NumBuveur = c.NumBuveur
+and n.NumVin = c.NumVin
+and NomBuveur = "DUPOND" ;
+```
+17. Liste des viticulteurs (n°, nom et ville) qui habitent la même ville que l'un de leurs clients.<br />
+```
+```
+18. Les buveurs qui habitent dans la même vile que le buveur 1400 (traiter les deux cas selon que l'on souhaite avoir dans les résultats le buveur 1400).<br />
+19. Les commandes qui spécifient une quantité du vin 140 inférieure à celle que spécifie la commande 11 pour ce même vin.<br />
+20. Les vins pour lesquels il n'y a pas de commande.
+21. Liste des buveurs (num et nom) n'ayany commandé que du Bourgogne (au moins 2 solutions).<br />
+22. Liste des buveurs (num et nom) qui ont commandé du Bourgogne et du Bordeau (au moins 2 solutions).
+##Requêtes avec Agrégats
+23. 
