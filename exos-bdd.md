@@ -13,8 +13,8 @@
 `describe $table_name ;`
 
 ```
-select Nom as 'Allons voir'
-plusieurs attributs: X, Y
+select Nom as 'Allons voir' from Buveur order by Nom asc ;
+plusieurs attributs: X, Y ;
 chaîne de caractères: 'Chaîne'
 contient X: like %X%
 select X from Y where attribute between 'A%' and 'G%'
@@ -151,4 +151,4 @@ and NomBuveur = "DUPOND" ;
 21. Liste des buveurs (num et nom) n'ayany commandé que du Bourgogne (au moins 2 solutions).<br />
 22. Liste des buveurs (num et nom) qui ont commandé du Bourgogne et du Bordeau (au moins 2 solutions).
 ##Requêtes avec Agrégats
-23. 
+23.
