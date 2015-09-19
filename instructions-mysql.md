@@ -14,6 +14,50 @@ Démarrrer
 4. Décrire une table<br />
 `describe $table_name ;`
 
+##Opérateurs
+
+###Opérateurs rélationnels
+
+```
+=
+<=
+>=
+<>
+<
+>
+```
+###Opérateurs arithmétiques
+
+```
++
+-
+*
+/
+```
+
+###Opérateurs logiques
+
+```
+AND
+OR
+NOT
+```
+
+###Autres
+
+```
+LIKE
+BETWEEN
+IS NULL
+IN
+EXISTS
+```
+##Selecteurs
+
+```
+*
+%
+```
 
 ##SELECT
 
@@ -22,6 +66,32 @@ SELECT
 SELECT DISTINCT
 SELECT AS
 ```
+##WHERE
+
+```
+WHERE
+WHERE x AND y
+WHERE x OR Y
+WHERE x LIKE %y%
+WHERE x BETWEEN y AND z
+```
+
+##Jointure
+
+```
+SELECT * FROM table t, autre a
+WHERE t.numéro = a.numéro ;
+```
+
+##Traitement résultats
+
+```
+GROUP BY
+HAVING
+ORDER BY
+```
+
+##Exemples
 
 ```
 select Nom as 'Allons voir' from Buveur order by Nom asc ;
