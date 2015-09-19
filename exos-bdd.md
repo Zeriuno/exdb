@@ -126,4 +126,11 @@ and NomBuveur = "DUPOND" ;
 21. Liste des buveurs (num et nom) n'ayany commandé que du Bourgogne (au moins 2 solutions).<br />
 22. Liste des buveurs (num et nom) qui ont commandé du Bourgogne et du Bordeau (au moins 2 solutions).
 ##Requêtes avec Agrégats
-23.
+23. Afficher pour chaque région son nom et son nombre de vins.<br />
+24. Afficher pour chaque viticulteur son nom, son numéro et le nombre de crus qu'il produit.<br />
+25. Afficher le nom, le numéro et la quantité moyenne commandée pour chaque buveur de PARIS.<br />
+26. Afficher le nombre de commandes par buveur.<br />
+27. Total des quantités commandées pour chaque buveur dont la moyenne des quantités commandées est égale ou supérieure à 12.<br />
+28. Noms et numéros des viticulteurs qui produisent au moins deux vins de crus différents.<br />
+29. Les vins (numéro, cru, nombre de commandes) ayant été commandés au moins deux fois.<br />
+30. Liste des commandes non entièrement livrées.<br />
