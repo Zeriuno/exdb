@@ -118,9 +118,17 @@ and n.NumVin = c.NumVin
 and NomBuveur = "DUPOND" ;
 ```
 17. Liste des viticulteurs (n°, nom et ville) qui habitent la même ville que l'un de leurs clients.<br />
+
+Selection de viticulteurs habitant dans la même ville que les buveurs (pas leurs clients).
 ```
+SELECT DISTINCT NumVitic, NomV, VilleV from Viticulteur, Buveur
+WHERE VilleV = VilleB
 ```
-18. Les buveurs qui habitent dans la même vile que le buveur 1400 (traiter les deux cas selon que l'on souhaite avoir dans les résultats le buveur 1400).<br />
+
+18. Les buveurs qui habitent dans la même ville que le buveur 1400 (traiter les deux cas selon que l'on souhaite avoir dans les résultats le buveur 1400).<br />
+
+
+
 19. Les commandes qui spécifient une quantité du vin 140 inférieure à celle que spécifie la commande 11 pour ce même vin.<br />
 20. Les vins pour lesquels il n'y a pas de commande.
 21. Liste des buveurs (num et nom) n'ayany commandé que du Bourgogne (au moins 2 solutions).<br />

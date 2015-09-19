@@ -1,6 +1,6 @@
 #Instructions MySQL
 
-Démarrrer
+##Démarrrer
 
 1. Montrer toutes les BDD à l'intérieur du SGBD<br />
 `show databases ;`
@@ -9,14 +9,19 @@ Démarrrer
 `use $database_name ;`
 
 3. Montrer les tables à l'intérieur d'une BDD<br />
-`show tables from $database_name ;`
+`show tables [from $database_name];`
 
 4. Décrire une table<br />
 `describe $table_name ;`
 
-##Opérateurs
 
-###Opérateurs rélationnels
+##Manipulation du contenu
+
+##Requêtes
+
+###Opérateurs
+
+####Opérateurs rélationnels
 
 ```
 =
@@ -26,7 +31,7 @@ Démarrrer
 <
 >
 ```
-###Opérateurs arithmétiques
+####Opérateurs arithmétiques
 
 ```
 +
@@ -35,7 +40,7 @@ Démarrrer
 /
 ```
 
-###Opérateurs logiques
+####Opérateurs logiques
 
 ```
 AND
@@ -43,7 +48,7 @@ OR
 NOT
 ```
 
-###Autres
+####Autres
 
 ```
 LIKE
@@ -52,21 +57,21 @@ IS NULL
 IN
 EXISTS
 ```
-##Selecteurs
+###Selecteurs
 
 ```
 *
 %
 ```
 
-##SELECT
+###SELECT
 
 ```
 SELECT
 SELECT DISTINCT
 SELECT AS
 ```
-##WHERE
+###WHERE
 
 ```
 WHERE
@@ -76,14 +81,14 @@ WHERE x LIKE %y%
 WHERE x BETWEEN y AND z
 ```
 
-##Jointure
+###Jointure
 
 ```
 SELECT * FROM table t, autre a
 WHERE t.numéro = a.numéro ;
 ```
 
-##Traitement résultats
+###Traitement résultats
 
 ```
 GROUP BY
@@ -91,7 +96,7 @@ HAVING
 ORDER BY
 ```
 
-##Exemples
+###Exemples
 
 ```
 select Nom as 'Allons voir' from Buveur order by Nom asc ;
