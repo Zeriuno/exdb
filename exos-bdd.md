@@ -83,7 +83,7 @@ avec alias
 ```
 select c.NumBuveur, NomB, VilleB from Commande c, Buveur b, where c.NumBuveur = b.NumBuveur ;
 ```
-13. Liste des viticculteurs (n°, nom et ville) qui proposent du vin de Loire de millésime 1983.<br />
+13. Liste des viticulteurs (n°, nom et ville) qui proposent du vin de Loire de millésime 1983.<br />
 ```
 describe Vin ;
 describe Viticulteur ;
@@ -142,3 +142,92 @@ WHERE VilleV = VilleB
 28. Noms et numéros des viticulteurs qui produisent au moins deux vins de crus différents.<br />
 29. Les vins (numéro, cru, nombre de commandes) ayant été commandés au moins deux fois.<br />
 30. Liste des commandes non entièrement livrées.<br />
+
+#TP Gestion
+
+1. Donnez la liste des noms d'employés.<br />
+```
+SELECT ename from EMP ;
+```
+2. Donnez la liste des noms et date d'embauche du département 20.<br />
+```
+SELECT ename, hiredate from EMP
+WHERE DEPTNO = 20 ;
+```
+3. Donnez la somme des salaires payés dans l'entreprise.<br />
+```
+SELECT SUM(SAL) from EMP ;
+```
+4. Donnez la liste des employés (nom, poste et salaire qui gagnent lus de 2800 et qui sont managers).<br />
+```
+SELECT ENAME, SAL, JOB from EMP
+WHERE JOB = "MANAGER" and SAL > 2800 ;
+```
+5. Donnez la liste des employés don le départment est situé à Dallas.<br />
+```
+SELECT ENAME FROM EMP e, DEPT d
+WHERE d.DEPTNO = e.DEPTNO AND LOC = "DALLAS";
+```
+6. Donnez la liste des employés du département 30 (nom, poste et salaire), triée sur le salaire par ordre croissant.<br />
+```
+SELECT ENAME, JOB, SAL from EMP ORDER BY SAL ASC ;
+```
+7. Donnez l'ensemble des différents postes de l'entreprise (tous distincts).<br />
+```
+SELECT DISTINCT JOB from EMP ;
+```
+8. Donnez la liste des emloyés dont le nom commence par M et dont le salaire est supérieur ou égal à 1290€.<br />
+```
+SELECT * FROM EMP
+WHERE ENAME LIKE "M%"
+AND SAL >= 1290 ;
+```
+9. Donnez la situation du département dans lequel travalle l'employé de nom Allen.<br />
+```
+SELECT DNAME, LOC from EMP e, DEPT d
+WHERE e.DEPTNO = d.DEPTNO AND ENAME= "ALLEN";
+```
+10. Donner la liste des départements qui possèdent des postes CLERK, SAlESMAN ou ANALYST.<br />
+```
+
+```
+11. Donner la liste des managers (la valeur associée à sa fonction est MANAGER), dont les subordonnés perçoivent une commission.<br />
+```
+```
+12. Donner la liste des employés dont le département est situé à DALLAS ou CHICAGO, et dont le salaire est supérieur à 1000.<br />
+```
+
+```
+13. Donner un récapitulatif, qui pour chaque nom de département, donne le nom des postes, la somme des salaires dépensés pour chaque poste, le nombre d'employés sur chaque poste dans ce département. Dans le récapitulatif, ne doivent apparaître que les départments qui ont plus de deux eployés sur un type de poste donné..<br />
+```
+
+```
+14. Pour chaque employé, donnez le nom, le salaire, l'échelle de salaire, le nom de son supérieur hiéarchique direct, le numéro du département, et la ville du département. La liste doit être ordonnée sur le salaire.<br />
+```
+SELECT
+ORDER BY SAL ASC ;
+```
+15. Pour chaque département, calculer la moyenne des salaires.<br />
+```
+
+```
+16. Pour chaque employé, donnez la proportion de la commission et du salaire (par rapport au montant total perçu).<br />
+```
+
+```
+17. Quels sont les départements qui coûtent le plus cher, et le moins cher en terme de salaire? On donnera le résultat en une seule requête.<br />
+```
+
+```
+18. Donner la liste des numérs de département qui ont plus de 3 employés, mais qui ne sont pas situés à Chicago.<br />
+```
+
+```
+19. Donner la liste des numéros de départements qui n'ont pas d'employés.<br />
+```
+
+```
+20. Quel est le département qui emploie le plus de salariés?.<br />
+```
+
+```
