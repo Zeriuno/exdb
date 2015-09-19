@@ -187,16 +187,23 @@ AND SAL >= 1290 ;
 SELECT DNAME, LOC from EMP e, DEPT d
 WHERE e.DEPTNO = d.DEPTNO AND ENAME= "ALLEN";
 ```
-10. Donner la liste des départements qui possèdent des postes CLERK, SAlESMAN ou ANALYST.<br />
+10. Donner la liste des départements qui possèdent des postes CLERK, SALESMAN ou ANALYST.<br />
 ```
-
+DESCRIBE DEPT ;
+SELECT DISTINCT d.DEPTNO, DNAME from DEPT d, EMP e
+WHERE JOB IN ("CLERK", "SALESMAN", "ANALYST")
+AND d.DEPTNO = e.DEPTNO ;
 ```
 11. Donner la liste des managers (la valeur associée à sa fonction est MANAGER), dont les subordonnés perçoivent une commission.<br />
 ```
+
 ```
 12. Donner la liste des employés dont le département est situé à DALLAS ou CHICAGO, et dont le salaire est supérieur à 1000.<br />
 ```
-
+SELECT EMPNO, ENAME from EMP e, DEPT d
+WHERE LOC IN ("DALLAS", "CHICAGO")
+AND SAL > 1000
+AND e.DEPTNO = d.DEPTNO ;
 ```
 13. Donner un récapitulatif, qui pour chaque nom de département, donne le nom des postes, la somme des salaires dépensés pour chaque poste, le nombre d'employés sur chaque poste dans ce département. Dans le récapitulatif, ne doivent apparaître que les départments qui ont plus de deux eployés sur un type de poste donné..<br />
 ```
