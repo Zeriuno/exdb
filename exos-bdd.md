@@ -124,6 +124,14 @@ Selection de viticulteurs habitant dans la même ville que les buveurs (pas leur
 SELECT DISTINCT NumVitic, NomV, VilleV from Viticulteur, Buveur
 WHERE VilleV = VilleB
 ```
+```
+SELECT DISTINCT b.NumBuveur, b.NomB, b.VilleB, v.NumVitic, NomV, VilleV from Viticulteur v, Commande c, Vin n, Buveur b,
+WHERE v.NumVitic = n.NumVitic
+AND n.NumVin = c.NumVin
+AND  b.NumBuveur = c.NumBuveur
+AND b.VilleB = v.VilleV ;
+```
+
 
 18. Les buveurs qui habitent dans la même ville que le buveur 1400 (traiter les deux cas selon que l'on souhaite avoir dans les résultats le buveur 1400).<br />
 
