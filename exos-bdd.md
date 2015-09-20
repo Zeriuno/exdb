@@ -115,7 +115,7 @@ select NomV from Viticulteur v, Buveur b, Commande c, Vin n
 where n.NumVitic = v.NumVitic
 and b.NumBuveur = c.NumBuveur
 and n.NumVin = c.NumVin
-and NomBuveur = "DUPOND" ;
+and NomB = "DUPOND" ;
 ```
 17. Liste des viticulteurs (n°, nom et ville) qui habitent la même ville que l'un de leurs clients.<br />
 
