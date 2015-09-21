@@ -134,20 +134,174 @@ AND b.VilleB = v.VilleV ;
 
 
 18. Les buveurs qui habitent dans la même ville que le buveur 1400 (traiter les deux cas selon que l'on souhaite avoir dans les résultats le buveur 1400).<br />
-
-
-
+Solution de M.me Le Grand
+```
+SELECT b1.*
+FROM Buveur b1, Buveur b2
+WHERE b1.VilleB = b2.VilleB
+AND b2.NumBuveur  = 1400
+AND b1.NumBuveur <> 1400 ;
+```
+Deux autres syntaxes, avec sous-requête, toujours de M.me Le Grand:
+```
+SELECT b1.*
+FROM Buveur b1
+WERE b1.NumBuveur <> 1400
+AND b1.VilleB IN
+(SELECT b2.VilleB FROM Buveur b2
+  WHERE b2.umBuveur = 1400) ;
+```
+```
+SELECT b1.*
+FROM Buveur b1
+WERE b1.NumBuveur <> 1400
+AND EXISTS
+ (SELECT b2.*
+   FROM Buveur b2
+  WHERE b2.NumBuveur = 1400
+  AND b2.VilleB = b1.VilleB) ;
+```
 19. Les commandes qui spécifient une quantité du vin 140 inférieure à celle que spécifie la commande 11 pour ce même vin.<br />
-20. Les vins pour lesquels il n'y a pas de commande.
+```
+
+```
+20. Les vins pour lesquels il n'y a pas de commande.<br />
+```
+SELECT n.*
+FROM Vin n
+WHERE n.NumVin NOT IN
+  (SELECT c.NumVin
+    FROM Commande c) ;
+```
+Syntaxe avec EXISTS donnée par M.me Le Grand
+```
+SELECT v.*
+FROM Vin v
+WHERE NOT EXISTS (
+  SELECT c.*
+  FROM Commande C
+  WHERE c.NumVin = v.NumVin
+  ) ;
+```
 21. Liste des buveurs (num et nom) n'ayany commandé que du Bourgogne (au moins 2 solutions).<br />
+Première requête, qui donne une solution fausse, et deux méthodes alternatives (code de M.me Le Grand).
+```
+SELECT b.NumBuveur, b.NomB
+FROM Buveur b, Commande C, Vin n
+WHERE b.NumBuveur = c.NumBuveur
+AND c.NumVin = n.NumVin
+AND n.Cru = "Burgogne" ;
+```
+```
+SELECT b.NumBuveur
+FROM Buveur b
+WHERE b.NumBuveur NOT IN
+ (SELECT c.NumBuveur
+   FROM Commande c, Vin n
+   WHERE c.NumVin = n.NumVin
+   AND n.Cru <> "BOURGOGNE") ;
+```
+```
+SELECT b.NumBuveur
+FROM Buveur b
+WHERE NOT EXISTS
+ (SELECT c.NumBuveur
+   FROM Commande c, Vin n
+   WHERE c.NumVin = n.NumVin
+   AND n.NomV <> "BOURGOGNE"
+   AND b.NumBuveur = c.NumBuveur) ;
+```
 22. Liste des buveurs (num et nom) qui ont commandé du Bourgogne et du Bordeau (au moins 2 solutions).
+```
+SELECT b.NumBuveur
+FROM Buveur b, Commande c, Vin n
+WHERE n.Region = "BOURGOGNE"
+AND b.NumBuveur = c.NumBuveur
+AND c.NumVin = n.NumVin
+AND b.NumBuveur IN (
+  SELECT b.NumBuveur
+  FROM Buveur b, Commande c, Vin n
+  AND b.NumBuveur = c.NumBuveur
+  AND c.NumVin = n.NumVin
+  AND n.Region = "BORDEAUX"
+  );
+```
 ##Requêtes avec Agrégats
 23. Afficher pour chaque région son nom et son nombre de vins.<br />
+
+Explication par M.me Le Grand.
+
+Nécessité de regrouper les vins par région, pour ensuite en compter les vins
+```
+SELECT count(NumVin), Region
+FROM Vin
+GROUP BY Region;
+```
 24. Afficher pour chaque viticulteur son nom, son numéro et le nombre de crus qu'il produit.<br />
+```
+SELECT v.NumVitic, NomV, COUNT(distinct Cru)
+FROM Viticulteur v, Vin n
+WHERE v.NumVitic = n.NumVitic
+GROUP BY n.NumVitic, v.NomV ;
+```
+Variante sans jointure
+```
+SELEC COUNT(Cru), NumVitic
+FROM Vin
+GROUP BY NumVitic ;
+```
+Variante affichant des viticulteurs uniquement s'ils ont produit plus de 5 crus -> HAVING
+
 25. Afficher le nom, le numéro et la quantité moyenne commandée pour chaque buveur de PARIS.<br />
+```
+SELECT NomB, b.NumBuveur, AVG(QtteCommandee)
+FROM Buveur b, Commande c
+WHERE b.NumBuveur = c.NumBuveur
+AND VilleB = "PARIS"
+GROUP BY NumBuveur ;
+```
 26. Afficher le nombre de commandes par buveur.<br />
+```
+SELECT COUNT(NumCom)
+from Commande
+GROUP BY NumBuveur;
+```
+En montrant aussi NumBuveur
+```
+SELECT COUNT(NumCom), NumBuveur
+FROM Commande
+GROUP BY NumBuveur;
+```
+Montrant son nom aussi:
+```
+SELECT COUNT(c.NumCom), c.NumBuveur, b.NomB
+FROM Commande c, Buveur b
+WHERE c.NumBuveur = b.NumBuveur
+GROUP BY c.NumBuveur ;
+```
 27. Total des quantités commandées pour chaque buveur dont la moyenne des quantités commandées est égale ou supérieure à 12.<br />
+
+```
+SELECT SUM(QtteCommandee), c.NumBuveur, NomB
+FROM Commande c, Buveur b
+WHERE c.NumBuveur = b.NumBuveur
+GROUP BY NumBuveur
+HAVING AVG(QtteCommandee)>= 12 ;
+```
+Variante: total des quantités commandées pour le Vin n.10.
+
 28. Noms et numéros des viticulteurs qui produisent au moins deux vins de crus différents.<br />
+```
+SELECT v.NumVitic, v.NomV
+FROM Viticulteur v, Vin n
+WHERE n.NumVitic = v.NumVitic
+HAVING (
+  SELECT COUNT(Cru)
+  FROM Vin n, Viticulteur v
+  WHERE v.NumVitic = n.NumVitic
+  GROUP BY n.NumVitic
+  )>2 ;
+```
 29. Les vins (numéro, cru, nombre de commandes) ayant été commandés au moins deux fois.<br />
 30. Liste des commandes non entièrement livrées.<br />
 
@@ -203,8 +357,13 @@ WHERE JOB IN ("CLERK", "SALESMAN", "ANALYST")
 AND d.DEPTNO = e.DEPTNO ;
 ```
 11. Donner la liste des managers (la valeur associée à sa fonction est MANAGER), dont les subordonnés perçoivent une commission.<br />
+Solution donnée par M.me Le Grand
 ```
-
+SELECT DISTINCT M.ENAME
+FROM EMP M, EMP E
+WHERE M.JOB = "MANAGER"
+AND E.MGR = M.EMPNO
+AND E.COMM > 0 ;
 ```
 12. Donner la liste des employés dont le département est situé à DALLAS ou CHICAGO, et dont le salaire est supérieur à 1000.<br />
 ```
@@ -234,13 +393,26 @@ ORDER BY SAL ASC ;
 ```
 
 ```
-18. Donner la liste des numérs de département qui ont plus de 3 employés, mais qui ne sont pas situés à Chicago.<br />
+18. Donner la liste des numéros de département qui ont plus de 3 employés, mais qui ne sont pas situés à Chicago.<br />
 ```
 
 ```
 19. Donner la liste des numéros de départements qui n'ont pas d'employés.<br />
 ```
-
+SELECT DEPTNO FROM DEPT
+WHERE DEPTNO NOT IN (
+  SELECT DEPTNO
+  FROM EMP
+  ) ;
+```
+Requête par M.me Le Grand
+```
+SELECT DEPTNO FROM DEPT
+WHERE DEPTNO NOT IN (
+  SELECT DEPTNO
+  FROM EMP
+  AND DEPT.DEPTNO = EMP.DEPTNO
+  ) ;
 ```
 20. Quel est le département qui emploie le plus de salariés?.<br />
 ```
