@@ -33,8 +33,20 @@ WHERE
 heure > 13
 ```
 4. Adresse et ville des patients qui ont consulté tous les médecins de l'hôpital.
+Monter adresse et ville des patients pour lesquels il n'existe pas de médecin pour lequel il n'existe pas de rdv pour ce patient et (lien rdv-médecin)
 ```
-
+SELECT p.adresse, p.ville
+FROM Patient p
+WHERE NOT EXISTS (
+  SELECT m.numM
+  FROM Medecin m
+  WHERE NOT EXISTS (
+    SELECT r.*
+    FROM RDV r
+    WHERE m.numM = r.numR
+    AND p.numP = r.numP
+    )
+  )
 ```
 5. Calculez le montant total payé par chaque patient parisien.
 ```
