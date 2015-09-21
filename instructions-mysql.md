@@ -19,6 +19,17 @@
 
 ##Requêtes
 
+Ordre des éléments
+
+```
+SELECT
+FROM
+WHERE (ici s'embriquent les requêtes)
+GROUP BY
+HAVING
+ORDER BY
+```
+
 ###Opérateurs
 
 ####Opérateurs rélationnels
@@ -39,13 +50,43 @@
 *
 /
 ```
+#####Division
 
+Trouver les buveurs qui ont commandé tous les vins -> division (tous est indice).
+
+Requête + deux sous-requêtes NOT EXIST (trois blocs SELECT).
+
+-> SELECT les noms des buveurs pour lesquels il n'existe pas de vin pour lequel il n'existe pas de commande pour ce buveur (lien Commande-Buveur)  et pour ce vin (lien Commande-Vin).
+```
+SELECT b.*
+FROM Buveur b
+WHERE NOT EXISTS (
+  SELEC v.*
+  FROM Vin n
+  WHERE NOT EXISTS (
+    SELECT c.*
+    FROM Commande c
+    WHERE c.NumBuveur = b.NumBuveur
+    AND c.NumVin = n.NumVin
+    )
+  );
+```
 ####Opérateurs logiques
 
 ```
 AND
 OR
 NOT
+```
+Différence: NOT IN ou NOT EXISTS
+Intersection: IN ou EXISTS ou jointure.
+Division: 2 NOT EXISTS
+
+####Opérateurs de calcul
+
+```
+AVG
+MAX()
 ```
 
 ####Autres
@@ -94,6 +135,33 @@ WHERE t.numéro = a.numéro ;
 GROUP BY
 HAVING
 ORDER BY
+```
+
+
+###Requêtes imbriquées
+
+####IN
+
+```
+SELECT b1.*
+FROM Buveur b1
+WERE b1.NumBuveur <> 1400
+AND b1.VilleB IN
+(SELECT b2.VilleB FROM Buveur b2
+  WHERE b2.umBuveur = 1400) ;
+```
+
+####EXISTS
+
+```
+SELECT b1.*
+FROM Buveur b1
+WERE b1.NumBuveur <> 1400
+AND EXISTS
+ (SELECT b2.*
+   FROM Buveur b2
+  WHERE b2.NumBuveur = 1400
+  AND b2.VilleB = b1.VilleB) ;
 ```
 
 ###Exemples
