@@ -61,7 +61,7 @@ Requête + deux sous-requêtes NOT EXIST (trois blocs SELECT).
 SELECT b.*
 FROM Buveur b
 WHERE NOT EXISTS (
-  SELEC v.*
+  SELECT v.*
   FROM Vin n
   WHERE NOT EXISTS (
     SELECT c.*
