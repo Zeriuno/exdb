@@ -14,6 +14,10 @@
 4. Décrire une table<br />
 `describe $table_name ;`
 
+##Exercices
+
+* http://bdd.univ-paris1.fr (servent login et mot de passe qu'on n'a pas)
+* http://www.ihazocd.org/teaching
 
 ##Manipulation du contenu
 
@@ -55,6 +59,11 @@ ORDER BY
 Trouver les buveurs qui ont commandé tous les vins -> division (tous est indice).
 
 Requête + deux sous-requêtes NOT EXIST (trois blocs SELECT).
+Trois blocs:
+
+1. Ce que l'on cherche
+2. Ce à quoi se réfère "tous"
+3. Le lien entre les deux tables.
 
 -> SELECT les noms des buveurs pour lesquels il n'existe pas de vin pour lequel il n'existe pas de commande pour ce buveur (lien Commande-Buveur)  et pour ce vin (lien Commande-Vin).
 ```
@@ -84,9 +93,13 @@ Division: 2 NOT EXISTS
 
 ####Opérateurs de calcul
 
+Fonctions()
 ```
-AVG
+AVG()
+COUNT()
+SUM()
 MAX()
+MIN()
 ```
 
 ####Autres
@@ -131,9 +144,12 @@ WHERE t.numéro = a.numéro ;
 
 ###Traitement résultats
 
+
+`GROUP BY` → son attribut doit être dans le SELECT
+Peut être groupé sur plusieurs critères (l'ordre compte) `GROUP BY numP, nomVin`
+`HAVING` → forcément après GROUP BY, ne peut être présent sans `GROUP BY`
+
 ```
-GROUP BY
-HAVING
 ORDER BY
 ```
 
@@ -167,7 +183,9 @@ AND EXISTS
 ###Exemples
 
 ```
-select Nom as 'Allons voir' from Buveur order by Nom asc ;
+select Nom as 'Allons voir' from Buveur order by Nom ASC (ou, inverse DESC) ;
+Order by a comme ordre par défaut ASC
+ORDER BY nom ASC, num DESC;
 plusieurs attributs: X, Y ;
 chaîne de caractères: 'Chaîne'
 contient X: like %X%
