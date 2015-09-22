@@ -3,7 +3,9 @@
 ##Requêtes simples
 
 1. Liste des buveurs.<br />
-`select * from Buveur ;`
+```
+select * from Buveur ;
+```
 
 2. Liste des buveurs (n°, nom et ville)<br />
 `select NumBuveur, NomB, VilleB from Buveur ;`
@@ -17,6 +19,8 @@ where VilleB = 'PARIS' ;
 ```
 select NumBuveur, NomB
 where VilleB = 'PARIS' OR VilleB = 'MACON' ;
+```
+```
 ```
 5. Affichez les crus des vins de la région 'LOIRE' (sans la clause distinct et avec la clause distinct).<br />
 ```
@@ -208,8 +212,8 @@ WHERE NOT EXISTS
  (SELECT c.NumBuveur
    FROM Commande c, Vin n
    WHERE c.NumVin = n.NumVin
-   AND n.NomV <> "BOURGOGNE"
    AND b.NumBuveur = c.NumBuveur) ;
+   AND n.NomV <> "BOURGOGNE"
 ```
 22. Liste des buveurs (num et nom) qui ont commandé du Bourgogne et du Bordeau (au moins 2 solutions).
 ```
