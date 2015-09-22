@@ -29,8 +29,12 @@ AND spé = "ophtalmologie" ;
 ```
 SELECT m.numM
 FROM Medecin m
-WHERE
-heure > 13
+WHERE NOT EXISTS (
+  SELECT heure
+  FROM RDV
+  WHERE heure < 13  
+  )
+
 ```
 4. Adresse et ville des patients qui ont consulté tous les médecins de l'hôpital.
 Monter adresse et ville des patients pour lesquels il n'existe pas de médecin pour lequel il n'existe pas de rdv pour ce patient et (lien rdv-médecin)
