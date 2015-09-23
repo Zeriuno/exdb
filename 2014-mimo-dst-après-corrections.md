@@ -22,6 +22,10 @@ ASC est l'ordre par défaut, le cas inverse est DESC
 
 2. Calculer le coût moyen des RDV en ophtalmologie (tous patients et tous médecins confondus).
 ```
+SELECT AVG(montant)
+FROM RDV r, Medecin m
+WHERE r.numM = m.numM
+AND spé = "ophtalmologie" ;
 ```
 3. Identifiant des médecins qui ne consultent qu'après 13h.
 ```
