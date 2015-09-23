@@ -64,9 +64,45 @@ GROUP BY r.numP ;
 ```
 6. Nom des patients qui ont consulté en 2012 et en 2013.
 ```
+SELECT nomP
+FROM Patient p, RDV r
+WHERE p.numP = r.numP
+AND date LIKE "%2012"
+AND r.numP IN (
+  SELECT r.numP
+  FROM RDV
+  AND date LIKE "%2013"
+  ) ;
+```
+```
+SELECT nomP
+FROM Patient p, RDV r
+WHERE p.numP = r.numP
+AND date LIKE "%2012"
+AND EXISTS (
+  SELECT *
+  FROM RDV r1
+  AND r1.date LIKE "%2013"
+  AND r.numP = r1.numP
+  ) ;
 ```
 7. Numéro de téléphone des patients qui ont consulté en radiologie ou en orthopédie le 1er janvier 2014.
 ```
+SELECT telP
+FROM Patient p, RDV r, Medecin m
+WHERE r.numP = p.numP
+AND r.numM = m.numM
+AND (spé = "radiologie"
+OR spé = "orthopédie")
+AND date = "01-01-2014"
+```
+```
+SELECT telP
+FROM Patient p, Medecin m, RDV r
+WHERE p.numP = r.numP
+AND m.numM = r.numM
+AND spé IN ("radiologie", "othopédie")
+AND date = "01-01-2014"
 ```
 8. Donnez le nombre total de rendez-vous pris par chaque patient, uniquement pour les patients ayant pris plus de 5 rendez-vous dans l'hôpital.
 ```
