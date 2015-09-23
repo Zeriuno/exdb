@@ -52,12 +52,15 @@ WHERE NOT EXISTS (
     WHERE r.numM = m.numM
     AND p.numP = r.numP
     )
-  )
+  ) ;
 ```
 
 5. Calculez le montant total payé par chaque patient parisien.
 ```
-
+SELECT SUM(montant), r.numP
+FROM RDV r, Patient p
+WHERE ville = "Paris"
+GROUP BY r.numP ;
 ```
 6. Nom des patients qui ont consulté en 2012 et en 2013.
 ```
