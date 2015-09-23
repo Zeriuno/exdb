@@ -106,11 +106,28 @@ AND date = "01-01-2014"
 ```
 8. Donnez le nombre total de rendez-vous pris par chaque patient, uniquement pour les patients ayant pris plus de 5 rendez-vous dans l'hôpital.
 ```
-
+SELECT COUNT(r.numRDV)
+FROM RDV r, Patient p
+WHERE p.numP = r.RDV
+GROUP BY r.numP
+HAVING (COUNT(r.numRDV)) > 5
 ```
 10. Créer la table RDV(*numRDV*, numP#, numM#, date, heure, montant)
 ```
+CREATE TABLE RDV (
+  numRDV integer Primary key,
+  numP integer not null,
+  numM integer not null,
+  date date,
+  heure time,
+  montant float,
+  CONSTRAINT
+    FOREIGN KEY (numP) references Patient (numP)
+    FOREIGN KEY (numM) references Medecin (numM)
+  )
 ```
 11. Insérer 1 patient dans Patient(*numP*, nomP, adrP, ville, telP)
 ```
+INSERT INTO Patient
+  VALUES (007, 'BOND', '21b Baker Street', 'London', NULL)
 ```
