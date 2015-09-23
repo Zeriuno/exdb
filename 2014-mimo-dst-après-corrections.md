@@ -16,7 +16,7 @@ AND spé ="diabétologie"
 AND date = "31-05-2013"
 AND m.numM = r.numM
 AND p.numP = r.numP
-ORDER BY nomP ASC
+ORDER BY nomP ASC ;
 ```
 ASC est l'ordre par défaut, le cas inverse est DESC
 
