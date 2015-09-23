@@ -106,7 +106,7 @@ AND date = "01-01-2014"
 ```
 8. Donnez le nombre total de rendez-vous pris par chaque patient, uniquement pour les patients ayant pris plus de 5 rendez-vous dans l'hôpital.
 ```
-SELECT COUNT(r.numRDV)
+SELECT COUNT(r.numRDV), numP
 FROM RDV r, Patient p
 WHERE p.numP = r.RDV
 GROUP BY r.numP
