@@ -34,7 +34,7 @@ WHERE NOT EXISTS ( #différence
   FROM RDV r
   WHERE heure < "13:00"
   AND m.numM = r.numM
-  )
+  ) ;
 ```
 Syntaxe avec NOT IN par M.me Le Grand
 ```
@@ -44,7 +44,7 @@ WHERE numM NOT IN (
   SELECT numM
   FROM RDV
   WHERE heure < "13:00"
-  )
+  ) ;
 ```
 ↑Ces cas font apparaître les médecins n'ayant aucun rendez-vous. Si on prend les numM de RDV, on obtient des numéros de Médecins ayant des rendez-vous.
 
@@ -62,7 +62,7 @@ WHERE NOT EXISTS (
     WHERE m.numM = r.numR
     AND p.numP = r.numP
     )
-  )
+  ) ;
 ```
 Adresse et ville des patients ayant consulté tous les chirurgiens
 Restrictions concernant les médecins, à mettre donc dans le bloc les concernant.
@@ -80,7 +80,7 @@ AND ville = "Paris" ;
 SELECT p.nomP
 FROM Patient p, RDV r
 WHERE p.numP = r.numP
-AND r.date IN(LIKE %2012, %2013)
+AND r.date IN(LIKE %2012, %2013) ;
 ```
 1. la date est une chaîne de caractères: LIKE "%2012"
 2. On obtient un "ou inclusif"
@@ -95,7 +95,7 @@ AND r.numP IN (
   SELECT r1.numP
   FROM RDV r1
   AND date LIKE "%2013"
-  )
+  ) ;
 ```
 Possible de faire cela dans une seule requête avec une double jointure avec RDV (deux RDV, l'un pour 2012, l'autre pour 2013).
 
@@ -110,7 +110,7 @@ AND EXISTS (
   FROM RDV r1
   WHERE r1.date LIKE "%2012"
   AND p.numP = r1.numP
-  )
+  ) ;
 ```
 
 7. Numéro de téléphone des patients qui ont consulté en radiologie ou en orthopédie le 1er janvier 2014.
@@ -145,10 +145,10 @@ CREATE TABLE RDV (
   CONSTRAINT
     FOREIGN KEY (numP) references Patient (numP)
     FOREIGN KEY (numM) references Medecin (numM)
-  );
+  ) ;
 ```
 11. Insérer 1 patient dans Patient(*numP*, nomP, adrP, ville, telP)
 ```
 INSERT INTO Patient
-  VALUES (01, "Réno", "4 rue Victor Cousin", "Paris", 0115181790);
+  VALUES (01, "Réno", "4 rue Victor Cousin", "Paris", 0115181790) ;
 ```
