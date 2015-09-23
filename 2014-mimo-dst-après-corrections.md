@@ -29,9 +29,14 @@ AND spé = "ophtalmologie" ;
 ```
 3. Identifiant des médecins qui ne consultent qu'après 13h.
 ```
-
+SELECT r.numM
+FROM RDV r,
+WHERE r.numM NOT IN (
+  SELECT r.numM
+  FROM RDV r
+  WHERE heure <= "13:00" ;
+  )
 ```
-
 4. Adresse et ville des patients qui ont consulté tous les médecins de l'hôpital.
 ```
 ```
