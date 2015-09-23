@@ -38,11 +38,26 @@ WHERE r.numM NOT IN (
   )
 ```
 4. Adresse et ville des patients qui ont consulté tous les médecins de l'hôpital.
+
+Les patients pour lesquels il n'y a pas de médecins pour lesquels il n'y a pas de visites pour ce médecin pour ce patient
 ```
+SELECT adresse, ville
+FROM Patient p
+WHERE NOT EXISTS (
+  SELECT *
+  FROM Medecin m
+  WHERE NOT EXIST (
+    SELECT *
+    FROM RDV r
+    WHERE r.numM = m.numM
+    AND p.numP = r.numP
+    )
+  )
 ```
 
 5. Calculez le montant total payé par chaque patient parisien.
 ```
+
 ```
 6. Nom des patients qui ont consulté en 2012 et en 2013.
 ```
