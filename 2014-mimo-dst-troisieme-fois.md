@@ -11,7 +11,7 @@ Traduire en SQL les requêtes suivantes.
 ```
 ```
 2. Calculer le coût moyen des RDV en ophtalmologie (tous patients et tous médecins confondus).
-→ table Medecin (attribut spé), table RDV et AVG
+→ table Medecin (attribut spé), table RDV et AVG()
 
 ```
 ```

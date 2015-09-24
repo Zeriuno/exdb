@@ -29,7 +29,7 @@ Ordre des éléments
 SELECT
 FROM
 WHERE (ici s'embriquent les requêtes)
-GROUP BY
+GROUP BY -dont l'argument doit apparaître dans le SELECT-
 HAVING
 ORDER BY
 ```
@@ -65,7 +65,7 @@ Trois blocs:
 2. Ce à quoi se réfère "tous"
 3. Le lien entre les deux tables.
 
--> SELECT les noms des buveurs pour lesquels il n'existe pas de vin pour lequel il n'existe pas de commande pour ce buveur (lien Commande-Buveur)  et pour ce vin (lien Commande-Vin).
+→ SELECT les noms des buveurs pour lesquels il n'existe pas de vin pour lequel il n'existe pas de commande pour ce buveur (lien Commande-Buveur)  et pour ce vin (lien Commande-Vin).
 ```
 SELECT b.*
 FROM Buveur b
