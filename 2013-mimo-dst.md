@@ -78,6 +78,11 @@ GROUP BY lieu
 
 ```
 11. Nom des organismes qui interviennent dans tous les événements, qu'ils soient ou non organisateurs. (NB: il y a toujours des intervenants d'un organisme organisateur d'un événement qui interviennent lors de cet événement).
+TOUS → Division.
+Les organismes pour lesquels il n'y a pas d'événements
+pour lesquels il n'y a pas d'interventions
+pour cet événement
+pour cet organisme.
 ```
 
 ```
