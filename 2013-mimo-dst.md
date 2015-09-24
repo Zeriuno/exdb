@@ -89,7 +89,54 @@ pour cet organisme.
 Ajout 2015:
 12. Création de toutes les tables, dans le bon ordre.
 ```
-
+CREATE TABLE Organisme(
+  id_org integer primary key,
+  nom varchar[20],
+  type varchar[10],
+  adresse varchar[100]
+  )
+CREATE TABLE Lieu (
+  id_lieu integer primary key,
+  nom varchar[100],
+  type varchar[30],
+  adresse varchar[100]
+  )
+CREATE TABLE Intervenant (
+  id_intervenant integer primary key,
+  nom varchar[50],
+  prenom varchar [20],
+  coordonnees varchar[100]
+  id_org integer
+  CONSTRAINT
+    FOREIGN KEY (id_org) references Organisme (id_org)
+  )
+CREATE TABLE Evenement (
+  id_even integer primary key,
+  nom varchar[200],
+  date date not null,
+  tarif float,
+  id_org integer,
+  id_lieu integer,
+  CONSTRAINT
+    FOREIGN KEY (id_org) REFERENCES Organisme (id_org),
+    FOREIGN KEY (id_lieu) REFERENCES Evenement (id_lieu)
+  )
+CREATE TABLE Intervenant (
+  id_interv integer primary key,
+  nom varchar[20] not null,
+  prenom varchar [20] not null,
+  coordonnees varchar[100] not null,
+  id_org integer,
+  CONSTRAINT
+    FOREIGN KEY (id_org) REFERENCES Organisme (id_org)
+  )
+CREATE TABLE Intervenant (
+  id_interv integer primary key,
+  texte varchar[50000] not null,
+  id_even integer not null,
+  CONSTRAINT
+    FOREIGN KEY (id_even) REFERENCES Evenement (id_even)
+  )
 ```
 13. Insertion de données dans toutes les tables.
 ```
