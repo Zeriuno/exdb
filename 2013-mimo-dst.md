@@ -77,7 +77,7 @@ GROUP BY lieu
 ```
 
 ```
-11. Nom des organismes qu interviennent dans tous les événements, qu'ils soient ou non organisateurs. (NB: il y a toujours des intervenants d'un organisme organisateur d'un événement qui interviennent lors de cet événement).
+11. Nom des organismes qui interviennent dans tous les événements, qu'ils soient ou non organisateurs. (NB: il y a toujours des intervenants d'un organisme organisateur d'un événement qui interviennent lors de cet événement).
 ```
 
 ```
@@ -89,4 +89,4 @@ Ajout 2015:
 13. Insertion de données dans toutes les tables.
 ```
 
-``` 
+```
