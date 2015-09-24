@@ -64,10 +64,16 @@ leur identifiant NOT IN l'autre table
 
 ```
 9. Par événement (indiquer le nom des événements), donner l'identifiant, le nom, prénom et nombre d'interventions des intervenants dont le nombre d'heures d'intervention total est supérieur ou égal à 20 heures.
+Selection normale, avec GROUP BY (argument dans le select)
 ```
 
 ```
 10. Nom du ou des lieux les plus utilisés pour des événements.
+
+→ table pour compter les événements, table pour le nom
+Compter les événements pour chaque (group by, dont l'argument va dans le select) lieu, compter les numéros d'événements et n'en sortir que le MAX.
+SELECT MAX(COUNT(événements)), lieu
+GROUP BY lieu
 ```
 
 ```
