@@ -2,6 +2,10 @@
 
 /*Sauf mention contraire, le code est de M. du Mouza, tous droits réservés*/
 
+/*Pour obtenir le jour de la semaine correspondant à une date*/
+select to_char(to_date('27/04/1984', 'DD/MM/YYYY'), 'DAY') FROM dual;
+
+
 CREATE OR REPLACE FUNCTION gain(p_ Monument.destination%TYPE) RETURN INTEGER IS
   v_gain Visite.prix%TYPE;
 BEGIN
