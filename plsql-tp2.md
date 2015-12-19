@@ -34,3 +34,23 @@ BEGIN
   CLOSE total_pays;
 END;
 /
+
+
+##Trigger
+
+1. Créer un trigger qui empêche d'insérer un monument dont la date est postérieure à la date actuelle
+
+CREATE OR REPLACE TRIGGER no_future
+BEFORE /*ou AFTER*/ INSERT OR UPDATE on Monument
+FOR EACH ROW
+DECLARE
+  this_year NUMBER(4);
+BEGIN
+  this_year := to_char(sysdate, 'YYYY');
+  IF(this_year < :NEW.an) THEN
+   RAISE_APPLICATION_ERROR(-20010, 'Retour vers le futur!');
+  END IF;
+END;
+/
+
+INSERT INTO Monument values('YOLO','YO','LO',2077);
