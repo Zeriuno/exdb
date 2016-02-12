@@ -225,6 +225,13 @@ AND  b.NumBuveur = c.NumBuveur
 AND b.VilleB = v.VilleV ;
 ```
 
+```
+SELECT DISTINCT NumVitic, NomV, VilleV
+FROM Viticulteur v, Commande c, Buveur b
+WHERE v.NumVitic = c.NumVitic
+AND b.NumBuveur = c.NumBuveur
+AND VilleV = VilleB;
+```
 
 18. Les buveurs qui habitent dans la même ville que le buveur 1400 (traiter les deux cas selon que l'on souhaite avoir dans les résultats le buveur 1400).<br />
 Solution de M.me Le Grand
