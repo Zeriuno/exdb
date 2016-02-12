@@ -7,14 +7,31 @@
 select * from Buveur ;
 ```
 
+```
+SELECT *
+FROM Buveur;
+```
+
 2. Liste des buveurs (n°, nom et ville)<br />
 `select NumBuveur, NomB, VilleB from Buveur ;`
+
+```
+SELECT NumBuveur, NomB, VilleB
+FROM Buveur;
+```
 
 3. Liste des numéros et noms des buveurs habitant 'PARIS'<br />
 ```
 select NumBuveur, NomB from Buveur
 where VilleB = 'PARIS' ;
 ```
+
+```
+SELECT NumBuveur, NomBuveur
+FROM Buveur
+WHERE VilleB = 'PARIS';
+```
+
 4. Liste des buveurs (numéros et noms) qui habitent Paris et des buveurs qui habitent Macon.<br />
 ```
 select NumBuveur, NomB
