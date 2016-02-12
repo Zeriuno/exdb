@@ -246,7 +246,7 @@ Deux autres syntaxes, avec sous-requête, toujours de M.me Le Grand:
 ```
 SELECT b1.*
 FROM Buveur b1
-WERE b1.NumBuveur <> 1400
+WHERE b1.NumBuveur <> 1400
 AND b1.VilleB IN
 (SELECT b2.VilleB FROM Buveur b2
   WHERE b2.umBuveur = 1400) ;
