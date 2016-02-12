@@ -19,7 +19,11 @@ GROUP BY nomClient
 
 Dans un GROUP BY on n'affiche que des attributs du groupe et des calculs.
 
+<<<<<<< HEAD
 Dans un SELECT d'un groupe complet, pas d'attributs (c'est un GROUP BY implicite, sans aucun critère)
+=======
+Dqns un SELECT d'un groupe complet, pas d'attributs (c'est un GROUP BY implicite, sans aucun critère)
+>>>>>>> 49fd4daed19343ce7fb61bf06ea3d84a3ef77c89
 Pour client, conter les commandes et la quantité maximale commandée
 
 Jamais de fonctions d'aggrégation dans un WHERE.
