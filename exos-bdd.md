@@ -167,6 +167,14 @@ where b.NumBuveur = c.NumBuveur
 and c.NumVin = n.NumVin
 and Cru = "POMMARD"
 ```
+
+```
+SELECT NumBuveur, NomB
+FROM Buveur b, Commande c, Vin n
+WHERE b.NumBuveur = c.NumBuveur
+AND c.NumVin = n.NumVin
+AND Cru = 'POMMARD';
+```
 15. Noms des viticulteurs à qui le buveur 1600 a comandé du vin (2 solutions, avec ou sans sous-requêtes).
 ```
 select v.NomV from Viticulteur v, Vin n, Commande c, Buveur b
