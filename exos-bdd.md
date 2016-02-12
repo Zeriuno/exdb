@@ -148,6 +148,15 @@ describe Viticulteur ;
 select v.NumVitic, NomV, VilleV from Viticulteur v, Vin n
 where v.NumVitic = n.NumVitic and Region = "LOIRE" and Millesime = "1983" ;
 ```
+
+```
+SELECT NumVitic, NomV, VilleV
+FROM Viticulteur V, Vin n
+WHERE n.NumVitic = v.Numvitic
+AND Region = 'LOIRE'
+AND Millesime = '1983';
+```
+
 14. Liste des buveurs (n° et nom) qui ont commandé du vin de cru "Pommard".<br />
 ```
 describe Commande ;
