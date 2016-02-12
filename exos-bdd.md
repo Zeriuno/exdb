@@ -262,8 +262,16 @@ AND EXISTS
   AND b2.VilleB = b1.VilleB) ;
 ```
 19. Les commandes qui spécifient une quantité du vin 140 inférieure à celle que spécifie la commande 11 pour ce même vin.<br />
-```
 
+```
+SELECT *
+FROM Commande c, Vin n
+WHERE c.NumVin = n.NumVin
+AND c.NumVin = '140'
+AND QtteCommandee < (SELECT QtteCommandee
+                     FROM Commande c
+                     WHERE NumVin = '140'
+                     AND NumCom = '11')
 ```
 20. Les vins pour lesquels il n'y a pas de commande.<br />
 ```
