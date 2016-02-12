@@ -38,8 +38,19 @@ select NumBuveur, NomB
 where VilleB = 'PARIS' OR VilleB = 'MACON' ;
 ```
 ```
+SELECT NumBuveur, NomB
+FROM Buveur
+WHERE VilleB IN ('PARIS', 'MACON');
 ```
+
+```
+SELECT NumBuveur, NomB
+FROM Buveur
+WHERE VilleB = 'PARIS' OR VilleB = 'MACON';
+```
+
 5. Affichez les crus des vins de la région 'LOIRE' (sans la clause distinct et avec la clause distinct).<br />
+
 ```
 show tables from tpvins ;
 describe Vin ;
@@ -48,6 +59,19 @@ where Region = 'LOIRE' ;
 select distinct Cru from Vin
 where Region = 'LOIRE' ;
 ```
+
+```
+SELECT Cru
+FROM Vin
+WHERE Region = 'LOIRE';
+```
+
+```
+SELECT DISTINCT Cru
+FROM Vin
+WHERE Region = 'LOIRE';
+```
+
 6. Liste des différentes villes où habitent les buveurs.<br />
 `select distinct VilleB from Buveur ;`
 
@@ -104,6 +128,19 @@ avec alias
 ```
 select c.NumBuveur, NomB, VilleB from Commande c, Buveur b, where c.NumBuveur = b.NumBuveur ;
 ```
+
+```
+SELECT NumBuveur, NomB, VilleB
+FROM Buveur b, Commande c
+WHERE b.NumBuveur = c.NumBuveur;
+```
+
+```
+SELECT DISTINCT NumBuveur, NomB, VilleB
+FROM Buveur b, Commande c
+WHERE b.NumBuveur = c.Commande;
+```
+
 13. Liste des viticulteurs (n°, nom et ville) qui proposent du vin de Loire de millésime 1983.<br />
 ```
 describe Vin ;
