@@ -201,6 +201,15 @@ and b.NumBuveur = c.NumBuveur
 and n.NumVin = c.NumVin
 and NomB = "DUPOND" ;
 ```
+En relisant je me demande pourquoi la table Vin serait nécessaire.
+```
+SELECT NomVitic
+FROM Viticulteur v, Buveur b, Commande c
+WHERE b.NumBuveur = c.NumBuveur
+AND v.NumVitic = c.NumVitic
+AND NomB = 'DUPOND';
+```
+
 17. Liste des viticulteurs (n°, nom et ville) qui habitent la même ville que l'un de leurs clients.<br />
 
 Selection de viticulteurs habitant dans la même ville que les buveurs (pas leurs clients).
