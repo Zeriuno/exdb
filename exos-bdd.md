@@ -183,6 +183,15 @@ and c.NumVin = n.NumVin
 and n.NumVitic = v.NumVitic
 and c.NumBuveur = 1600 ;
 ```
+```
+SELECT NomV
+FROM Viticulteur v, Buveur b, Commande c, Vin n
+WHERE v.NumVitic = c.NumVitic
+AND b.NumBuveur = c.NumBuveur
+AND c.NumVin = n.NumVin
+AND c.NumBuveur = 1600;
+```
+
 16. Noms des viticulteurs à qui le buveur Dupond a commandé du vin.<br />
 ```
 describe Viticulteur ;
