@@ -291,7 +291,7 @@ WHERE NOT EXISTS (
   WHERE c.NumVin = v.NumVin
   ) ;
 ```
-21. Liste des buveurs (num et nom) n'ayany commandé que du Bourgogne (au moins 2 solutions).<br />
+21. Liste des buveurs (num et nom) n'ayant commandé que du Bourgogne (au moins 2 solutions).<br />
 Première requête, qui donne une solution fausse, et deux méthodes alternatives (code de M.me Le Grand).
 ```
 SELECT b.NumBuveur, b.NomB
