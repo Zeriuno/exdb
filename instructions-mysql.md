@@ -14,6 +14,8 @@
 4. Décrire une table<br />
 `describe $table_name ;`
 
+
+--DELETE FROM table_name [WHERE Clause]
 ##Exercices
 
 * http://bdd.univ-paris1.fr (servent login et mot de passe qu'on n'a pas)
