@@ -14,7 +14,7 @@ CREATE TABLE Vetement (
 
 3.
 
-NSERT INTO Vetement VALUES (
+INSERT INTO Vetement VALUES (
   1, "pantalon", "noir", "38", 40,75);
 
 4.
@@ -33,5 +33,3 @@ WHERE b.nBout NOT IN
   FROM Boutique b, Achat a, Vetement v
   WHERE b.nBout = a.nBout AND a.nVet = v.nVet
   AND taille <> "XL");
-
-
