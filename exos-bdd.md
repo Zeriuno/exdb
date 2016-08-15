@@ -7,22 +7,50 @@
 select * from Buveur ;
 ```
 
+```
+SELECT *
+FROM Buveur;
+```
+
 2. Liste des buveurs (n°, nom et ville)<br />
 `select NumBuveur, NomB, VilleB from Buveur ;`
+
+```
+SELECT NumBuveur, NomB, VilleB
+FROM Buveur;
+```
 
 3. Liste des numéros et noms des buveurs habitant 'PARIS'<br />
 ```
 select NumBuveur, NomB from Buveur
 where VilleB = 'PARIS' ;
 ```
+
+```
+SELECT NumBuveur, NomBuveur
+FROM Buveur
+WHERE VilleB = 'PARIS';
+```
+
 4. Liste des buveurs (numéros et noms) qui habitent Paris et des buveurs qui habitent Macon.<br />
 ```
 select NumBuveur, NomB
 where VilleB = 'PARIS' OR VilleB = 'MACON' ;
 ```
 ```
+SELECT NumBuveur, NomB
+FROM Buveur
+WHERE VilleB IN ('PARIS', 'MACON');
 ```
+
+```
+SELECT NumBuveur, NomB
+FROM Buveur
+WHERE VilleB = 'PARIS' OR VilleB = 'MACON';
+```
+
 5. Affichez les crus des vins de la région 'LOIRE' (sans la clause distinct et avec la clause distinct).<br />
+
 ```
 show tables from tpvins ;
 describe Vin ;
@@ -31,6 +59,19 @@ where Region = 'LOIRE' ;
 select distinct Cru from Vin
 where Region = 'LOIRE' ;
 ```
+
+```
+SELECT Cru
+FROM Vin
+WHERE Region = 'LOIRE';
+```
+
+```
+SELECT DISTINCT Cru
+FROM Vin
+WHERE Region = 'LOIRE';
+```
+
 6. Liste des différentes villes où habitent les buveurs.<br />
 `select distinct VilleB from Buveur ;`
 
@@ -87,6 +128,19 @@ avec alias
 ```
 select c.NumBuveur, NomB, VilleB from Commande c, Buveur b, where c.NumBuveur = b.NumBuveur ;
 ```
+
+```
+SELECT NumBuveur, NomB, VilleB
+FROM Buveur b, Commande c
+WHERE b.NumBuveur = c.NumBuveur;
+```
+
+```
+SELECT DISTINCT NumBuveur, NomB, VilleB
+FROM Buveur b, Commande c
+WHERE b.NumBuveur = c.Commande;
+```
+
 13. Liste des viticulteurs (n°, nom et ville) qui proposent du vin de Loire de millésime 1983.<br />
 ```
 describe Vin ;
@@ -94,6 +148,15 @@ describe Viticulteur ;
 select v.NumVitic, NomV, VilleV from Viticulteur v, Vin n
 where v.NumVitic = n.NumVitic and Region = "LOIRE" and Millesime = "1983" ;
 ```
+
+```
+SELECT NumVitic, NomV, VilleV
+FROM Viticulteur V, Vin n
+WHERE n.NumVitic = v.Numvitic
+AND Region = 'LOIRE'
+AND Millesime = '1983';
+```
+
 14. Liste des buveurs (n° et nom) qui ont commandé du vin de cru "Pommard".<br />
 ```
 describe Commande ;
@@ -104,6 +167,14 @@ where b.NumBuveur = c.NumBuveur
 and c.NumVin = n.NumVin
 and Cru = "POMMARD"
 ```
+
+```
+SELECT NumBuveur, NomB
+FROM Buveur b, Commande c, Vin n
+WHERE b.NumBuveur = c.NumBuveur
+AND c.NumVin = n.NumVin
+AND Cru = 'POMMARD';
+```
 15. Noms des viticulteurs à qui le buveur 1600 a comandé du vin (2 solutions, avec ou sans sous-requêtes).
 ```
 select v.NomV from Viticulteur v, Vin n, Commande c, Buveur b
@@ -112,6 +183,15 @@ and c.NumVin = n.NumVin
 and n.NumVitic = v.NumVitic
 and c.NumBuveur = 1600 ;
 ```
+```
+SELECT NomV
+FROM Viticulteur v, Buveur b, Commande c, Vin n
+WHERE v.NumVitic = c.NumVitic
+AND b.NumBuveur = c.NumBuveur
+AND c.NumVin = n.NumVin
+AND c.NumBuveur = 1600;
+```
+
 16. Noms des viticulteurs à qui le buveur Dupond a commandé du vin.<br />
 ```
 describe Viticulteur ;
@@ -121,6 +201,15 @@ and b.NumBuveur = c.NumBuveur
 and n.NumVin = c.NumVin
 and NomB = "DUPOND" ;
 ```
+En relisant je me demande pourquoi la table Vin serait nécessaire.
+```
+SELECT NomVitic
+FROM Viticulteur v, Buveur b, Commande c
+WHERE b.NumBuveur = c.NumBuveur
+AND v.NumVitic = c.NumVitic
+AND NomB = 'DUPOND';
+```
+
 17. Liste des viticulteurs (n°, nom et ville) qui habitent la même ville que l'un de leurs clients.<br />
 
 Selection de viticulteurs habitant dans la même ville que les buveurs (pas leurs clients).
@@ -136,6 +225,13 @@ AND  b.NumBuveur = c.NumBuveur
 AND b.VilleB = v.VilleV ;
 ```
 
+```
+SELECT DISTINCT NumVitic, NomV, VilleV
+FROM Viticulteur v, Commande c, Buveur b
+WHERE v.NumVitic = c.NumVitic
+AND b.NumBuveur = c.NumBuveur
+AND VilleV = VilleB;
+```
 
 18. Les buveurs qui habitent dans la même ville que le buveur 1400 (traiter les deux cas selon que l'on souhaite avoir dans les résultats le buveur 1400).<br />
 Solution de M.me Le Grand
@@ -150,7 +246,7 @@ Deux autres syntaxes, avec sous-requête, toujours de M.me Le Grand:
 ```
 SELECT b1.*
 FROM Buveur b1
-WERE b1.NumBuveur <> 1400
+WHERE b1.NumBuveur <> 1400
 AND b1.VilleB IN
 (SELECT b2.VilleB FROM Buveur b2
   WHERE b2.umBuveur = 1400) ;
@@ -166,8 +262,16 @@ AND EXISTS
   AND b2.VilleB = b1.VilleB) ;
 ```
 19. Les commandes qui spécifient une quantité du vin 140 inférieure à celle que spécifie la commande 11 pour ce même vin.<br />
-```
 
+```
+SELECT *
+FROM Commande c, Vin n
+WHERE c.NumVin = n.NumVin
+AND c.NumVin = '140'
+AND QtteCommandee < (SELECT QtteCommandee
+                     FROM Commande c
+                     WHERE NumVin = '140'
+                     AND NumCom = '11')
 ```
 20. Les vins pour lesquels il n'y a pas de commande.<br />
 ```
@@ -187,7 +291,16 @@ WHERE NOT EXISTS (
   WHERE c.NumVin = v.NumVin
   ) ;
 ```
-21. Liste des buveurs (num et nom) n'ayany commandé que du Bourgogne (au moins 2 solutions).<br />
+
+```
+SELECT *
+FROM Vin n
+WHERE
+NOT EXISTS (SELECT *
+                FROM Commande c
+                WHERE n.NumVin = c.NumVin);
+```
+21. Liste des buveurs (num et nom) n'ayant commandé que du Bourgogne (au moins 2 solutions).<br />
 Première requête, qui donne une solution fausse, et deux méthodes alternatives (code de M.me Le Grand).
 ```
 SELECT b.NumBuveur, b.NomB
